@@ -6,12 +6,22 @@ export interface Iicon {
 
 // MenuItem component
 export interface IMenuItem {
-  active?: boolean;
-  title?: string;
-  onClick: (value: string) => boolean;
+  active: boolean;
+  title: string;
+  handleClick: (newItem: string) => void;
+}
+// Sidebar component
+export interface ISidebar {
+  onChange: (value: string) => void;
+  selectedItem?: string;
 }
 
-export interface ISidebar {
-  onChange?: (value: string) => void;
-  selectedItem?: string;
+// Header component
+export interface IHeader {
+  title: string;
+}
+
+// App component
+export interface IApp {
+  handleSelectedItem: (value: string) => void;
 }

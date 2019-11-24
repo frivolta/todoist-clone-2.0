@@ -38,13 +38,20 @@ const styles = StyleSheet.create({
 });
 export const MenuItem: React.FC<IMenuItem> = props => {
   return (
-    <Row
-      className={css(styles.container, props.active && styles.activeContainer)}
-      vertical="center"
-    >
-      {props.active && <div className={css(styles.activeBar)}></div>}
-      <IconComponent fill={props.active && '#DDE2FF'} opacity={!props.active && '0.4'} />
-      <span className={css(styles.title, props.active && styles.activeTitle)}>{props.title}</span>
-    </Row>
+    <span className="clickable" role="button" onClick={() => props.handleClick(props.title)}>
+      <Row
+        className={css(styles.container, props.active && styles.activeContainer)}
+        vertical="center"
+        role="button"
+      >
+        {props.active && <div className={css(styles.activeBar)}></div>}
+        <IconComponent fill={props.active && '#DDE2FF'} opacity={!props.active && '0.4'} />
+        <span className={css(styles.title, props.active && styles.activeTitle)}>{props.title}</span>
+      </Row>
+    </span>
   );
+};
+
+MenuItem.defaultProps = {
+  title: 'None'
 };

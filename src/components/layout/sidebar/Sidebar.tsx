@@ -23,6 +23,8 @@ const styles = StyleSheet.create({
   }
 });
 
+//@ToDo: Should map items
+
 export const Sidebar: React.FC<ISidebar> = props => {
   return (
     <Column className={css(styles.container)}>
@@ -30,8 +32,13 @@ export const Sidebar: React.FC<ISidebar> = props => {
       <Column className={css(styles.menuItemList)}>
         <MenuItem
           title="Overview"
-          onClick={() => false}
+          handleClick={props.onChange}
           active={props.selectedItem === 'Overview'}
+        />
+        <MenuItem
+          title="Projects"
+          handleClick={props.onChange}
+          active={props.selectedItem === 'Projects'}
         />
       </Column>
     </Column>
