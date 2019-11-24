@@ -4,6 +4,10 @@
   "private": true,
   "dependencies": {
     "@testing-library/react": "^8.0.5",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.12",
+    "@types/react": "^16.9.13",
+    "@types/react-dom": "^16.9.4",
     "cypress": "^3.6.1",
     "firebase": "^6.2.4",
     "moment": "^2.24.0",
@@ -12,7 +16,9 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-icons": "^3.7.0",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "simple-flexbox": "^2.3.0",
+    "typescript": "^3.7.2"
   },
   "jest": {
     "collectCoverageFrom": [
