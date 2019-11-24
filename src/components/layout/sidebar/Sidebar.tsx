@@ -35,6 +35,8 @@ export const Sidebar: React.FC<ISidebar> = props => {
           handleClick={props.onChange}
           active={props.selectedItem === 'Overview'}
         />
+        <div className={css(styles.separator)}></div>
+
         <MenuItem
           title="Projects"
           handleClick={props.onChange}

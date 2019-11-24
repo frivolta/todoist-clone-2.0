@@ -19,7 +19,12 @@ const styles = StyleSheet.create({
   }
 });
 
-//@ToDo: Should be a custom hooks, handled with context
+//@Todo: Should be a custom hooks, handled with context
+//@Todo: Responsive version
+//@Todo: Using custom font
+//@Todo: Testing
+//@Todo: Storybook
+//@Todo: PWA version
 
 export const App: React.FC<IApp> = () => {
   const [selectedItem, setSelectedItem] = useState('Projects');
