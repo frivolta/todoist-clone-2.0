@@ -8,6 +8,7 @@
     "@types/node": "^12.12.12",
     "@types/react": "^16.9.13",
     "@types/react-dom": "^16.9.4",
+    "aphrodite": "^2.4.0",
     "cypress": "^3.6.1",
     "firebase": "^6.2.4",
     "moment": "^2.24.0",
