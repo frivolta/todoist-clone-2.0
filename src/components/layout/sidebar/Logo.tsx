@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     marginRight: 32
   },
   title: {
-    //fontFamily: 'Muli',
+    fontFamily: 'Poppins',
     fontStyle: 'normal',
     fontWeight: 'bold',
     fontSize: 19,

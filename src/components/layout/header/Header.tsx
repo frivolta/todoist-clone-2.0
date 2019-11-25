@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     cursor: 'pointer'
   },
   name: {
-    fontFamily: 'Muli',
+    fontFamily: 'Poppins',
     fontStyle: 'normal',
     fontWeight: 600,
     fontSize: 14,
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     }
   },
   title: {
-    fontFamily: 'Muli',
+    fontFamily: 'Poppins',
     fontStyle: 'normal',
     fontWeight: 'bold',
     fontSize: 24,
@@ -71,9 +71,9 @@ export const Header: React.FC<IHeader> = props => {
       <Row vertical="center">
         <div className={css(styles.separator)}></div>
         <Row vertical="center">
-          <span className={css(styles.name, styles.cursorPointer)}>Germán Llorente</span>
+          <span className={css(styles.name, styles.cursorPointer)}>Filippo Rivolta</span>
           <img
-            src="https://avatars3.githubusercontent.com/u/21162888?s=460&v=4"
+            src="http://www.gravatar.com/avatar/3920d16a913f3c1eaf3ce218ebbee975?s=48&d=identicon"
             alt="avatar"
             className={css(styles.avatar, styles.cursorPointer)}
           />
