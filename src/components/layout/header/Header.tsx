@@ -12,7 +12,18 @@ const styles = StyleSheet.create({
     border: '1px solid #DFE0EB'
   },
   container: {
-    height: 40
+    left: 0,
+    right: 0,
+    top: 0,
+    height: 64,
+    padding: '14px 30px',
+    display: 'flex',
+    position: 'fixed',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#ffffff',
+    boxShadow: '0 0 20px 0 rgba(0,0,0,.1)',
+    zIndex: 4
   },
   cursorPointer: {
     cursor: 'pointer'

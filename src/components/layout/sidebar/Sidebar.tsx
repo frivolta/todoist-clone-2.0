@@ -28,18 +28,19 @@ const styles = StyleSheet.create({
     zIndex: 901
   },
   mainContainer: {
-    height: '100%',
-    minHeight: '100vh'
+    left: 0,
+    top: 64,
+    bottom: 0,
+    width: 260,
+    position: 'fixed',
+    flex: '0 0 260px',
+    backgroundColor: '#ffffff',
+    boxShadow: '0 2px 10px 0 rgba(0, 0, 0, 0.1)',
+    color: '#898989',
+    zIndex: 3
   },
-  mainContainerMobile: {
-    position: 'absolute',
-    top: 0,
-    left: 0
-  },
-  mainContainerExpanded: {
-    width: '100%',
-    minWidth: '100vh'
-  },
+  mainContainerMobile: {},
+  mainContainerExpanded: {},
   menuItemList: {
     marginTop: 52
   },
@@ -101,38 +102,33 @@ export const Sidebar: React.FC<ISidebar> = props => {
   };
 
   return (
-    <div style={{ position: 'relative' }}>
-      <Row
-        className={css(styles.mainContainer)}
-        breakpoints={{
-          768: css(styles.mainContainerMobile, expanded && styles.mainContainerExpanded)
-        }}
+    <Row
+      className={css(styles.mainContainer)}
+      breakpoints={{
+        768: css(styles.mainContainerMobile, expanded && styles.mainContainerExpanded)
+      }}
+    >
+      {isMobile && !expanded && renderBurger()}
+      <Column
+        className={css(styles.container)}
+        breakpoints={{ 768: css(styles.containerMobile, expanded ? styles.show : styles.hide) }}
       >
-        {isMobile && !expanded && renderBurger()}
-        <Column
-          className={css(styles.container)}
-          breakpoints={{ 768: css(styles.containerMobile, expanded ? styles.show : styles.hide) }}
-        >
-          <Logo />
-          <Column className={css(styles.menuItemList)}>
-            <MenuItem
-              title="Overview"
-              handleClick={() => handleClickItem('Overview')}
-              active={props.selectedItem === 'Overview'}
-            />
-            <div className={css(styles.separator)}></div>
+        <Logo />
+        <Column className={css(styles.menuItemList)}>
+          <MenuItem
+            title="Overview"
+            handleClick={() => handleClickItem('Overview')}
+            active={props.selectedItem === 'Overview'}
+          />
+          <div className={css(styles.separator)}></div>
 
-            <MenuItem
-              title="Projects"
-              handleClick={() => handleClickItem('Projects')}
-              active={props.selectedItem === 'Projects'}
-            />
-          </Column>
+          <MenuItem
+            title="Projects"
+            handleClick={() => handleClickItem('Projects')}
+            active={props.selectedItem === 'Projects'}
+          />
         </Column>
-        {isMobile && expanded && (
-          <div className={css(styles.outsideLayer)} onClick={handleExpanded}></div>
-        )}
-      </Row>
-    </div>
+      </Column>
+    </Row>
   );
 };
