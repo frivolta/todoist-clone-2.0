@@ -8,14 +8,8 @@ import { ISidebar } from '../../../interfaces';
 import { IconBruger } from './IconBurger';
 
 const styles = StyleSheet.create({
-  burgerIcon: {
-    cursor: 'pointer',
-    position: 'absolute',
-    left: 24,
-    top: 34
-  },
   container: {
-    backgroundColor: '#363740',
+    backgroundColor: '#ffffff',
     width: 255,
     paddingTop: 32,
     height: 'calc(100% - 32px)'
@@ -29,7 +23,7 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     left: 0,
-    top: 64,
+    top: 72,
     bottom: 0,
     width: 260,
     position: 'fixed',
@@ -41,9 +35,7 @@ const styles = StyleSheet.create({
   },
   mainContainerMobile: {},
   mainContainerExpanded: {},
-  menuItemList: {
-    marginTop: 52
-  },
+  menuItemList: {},
   outsideLayer: {
     position: 'absolute',
     width: '100vw',
@@ -81,15 +73,6 @@ export const Sidebar: React.FC<ISidebar> = props => {
     return () => window.removeEventListener('resize', handleResize);
   }, [width]);
 
-  // Display Hamburger icon
-  const renderBurger = () => {
-    return (
-      <div onClick={handleExpanded} className={css(styles.burgerIcon)}>
-        <IconBruger />
-      </div>
-    );
-  };
-
   const isMobile = width <= 768;
 
   // Toggle expanded sidebar
@@ -108,12 +91,10 @@ export const Sidebar: React.FC<ISidebar> = props => {
         768: css(styles.mainContainerMobile, expanded && styles.mainContainerExpanded)
       }}
     >
-      {isMobile && !expanded && renderBurger()}
       <Column
         className={css(styles.container)}
         breakpoints={{ 768: css(styles.containerMobile, expanded ? styles.show : styles.hide) }}
       >
-        <Logo />
         <Column className={css(styles.menuItemList)}>
           <MenuItem
             title="Overview"

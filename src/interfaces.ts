@@ -18,7 +18,7 @@ export interface ISidebar {
 
 // Header component
 export interface IHeader {
-  title: string;
+  title?: string;
 }
 
 // App component
