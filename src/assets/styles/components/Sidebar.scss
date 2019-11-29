@@ -1,0 +1,12 @@
+.Sidebar {
+  flex-shrink: 0;
+  background-color: #eee;
+  overflow-x: hidden;
+  width: 0;
+  padding-top: $headerHeight;
+  transition: width 0.4s ease-in;
+  &--open {
+    width: 260px;
+    transition: width 0.4s ease-out;
+  }
+}
