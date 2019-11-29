@@ -1,10 +1,17 @@
 .Card {
   display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   height: auto;
-  background: red;
-  width: 100%;
+  width: 90%;
   max-width: 800px;
-  margin-left: 10%;
-  margin-right: 10%;
+  min-height: 72px;
+  background-color: $lightPrimary;
+  box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+
+  @include breakpoint(md) {
+    width: 80%;
+  }
 }
