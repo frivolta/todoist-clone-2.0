@@ -10,4 +10,17 @@
     width: 260px;
     transition: width 0.4s ease-out;
   }
+
+  .Title {
+    margin-top: 3rem;
+    margin-bottom: 16px;
+    margin-left: 32px;
+    margin-right: 32px;
+  }
+
+  hr {
+    border-top: 1px solid $darkSecondary;
+    margin-left: 32px;
+    margin-right: 32px;
+  }
 }

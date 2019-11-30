@@ -18,7 +18,16 @@ body,
   flex-direction: row;
 }
 
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
 @import 'components/Content';
 @import 'components/Sidebar';
 @import 'components/Header';
 @import 'components/Card';
+@import 'components/Menu';
+@import 'components/ProjectList';
+@import 'components/Title';

@@ -1,0 +1,39 @@
+.Menu {
+  font-family: $poppins;
+  font-weight: 700;
+  font-size: $base;
+  text-decoration: none;
+  list-style: none;
+  margin-top: 32px;
+  padding: 0 32px;
+
+  &__item {
+    color: $darkPrimary;
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: 16px;
+    margin-bottom: 16px;
+
+    #{$a-tags} {
+      color: $darkPrimary;
+      transition: all 0.5;
+    }
+    #{$a-tags-hover} {
+      color: $primaryColor;
+      transition: all 0.5;
+    }
+
+    &__link {
+      text-decoration: none;
+      transition: all 0.5;
+    }
+
+    &:last-child {
+      margin-bottom: 3rem;
+    }
+
+    &:first-child {
+      margin-top: 3rem;
+    }
+  }
+}

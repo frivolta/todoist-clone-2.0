@@ -1,10 +1,28 @@
 /*********************
+MISC
+*********************/
+$headerHeight: 72px;
+$sidebarWidth: 255px;
+$a-tags: 'a, a:active, a:hover, a:visited';
+$a-tags-hover: 'a:active, a:hover';
+
+/*********************
 COLORS
 *********************/
 $lightPrimary: #ffffff;
 $lightSecondary: #f2f2f7;
-$headerHeight: 72px;
-$sidebarWidth: 255px;
+$darkPrimary: #4a4a4a;
+$darkSecondary: #e7e7e7;
+$primaryColor: #007aff;
+
+/*********************
+FONTS
+*********************/
+// Font families
+$poppins: 'Poppins', sans-serif;
+
+// Sizes
+$base: 16px;
 
 /*********************
 BREAKPOINTS

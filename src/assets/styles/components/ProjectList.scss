@@ -1,0 +1,41 @@
+.ProjectList {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+  font-family: $poppins;
+  font-weight: 300;
+  font-size: $base;
+  color: $darkPrimary;
+  padding: 0 32px;
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+
+    &__label {
+      cursor: pointer;
+      &--active {
+        color: $primaryColor;
+      }
+
+      &:before {
+        content: '•';
+        color: $primaryColor;
+        font-weight: 900;
+        margin-right: 8px;
+      }
+    }
+
+    &__button {
+      cursor: pointer;
+      opacity: 0;
+      transition: all ease-out 0.5s;
+      &--active {
+        transition: all ease-out 0.5s;
+        opacity: 1;
+      }
+    }
+  }
+}
