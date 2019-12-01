@@ -1,0 +1,34 @@
+.Display {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+
+  &__label {
+    font-family: $poppins;
+    font-style: normal;
+    font-weight: 700;
+    font-size: $display;
+    line-height: $displayLineHeight;
+    color: $darkPrimary;
+  }
+
+  &__data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    text-align: center;
+    padding: 8px;
+    width: 32px;
+    height: 32px;
+    background: $primaryColor;
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.25);
+    color: $lightPrimary;
+    font-family: $poppins;
+    font-style: normal;
+    font-weight: 700;
+    font-size: $base;
+    line-height: $baseLineHeight;
+    margin-left: 16px;
+  }
+}
