@@ -1,0 +1,40 @@
+.TaskItem {
+  display: flex;
+  align-items: center;
+  margin: 16px 32px;
+  padding: 16px 32px;
+  border: 1px solid $darkSecondary;
+  border-radius: 10px;
+  transition: all ease-out 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $primaryColor;
+  }
+
+  &__checkbox {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid $darkPrimary;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.5s;
+
+    &:checked {
+      background-color: $primaryColor;
+      border-color: $primaryColor;
+      box-shadow: inset 0px 0px 0px 2px $lightPrimary;
+      transition: 0.5s;
+    }
+  }
+
+  &__label {
+    font-family: $poppins;
+    font-size: $base;
+    color: $darkPrimary;
+    margin-left: 16px;
+  }
+}
