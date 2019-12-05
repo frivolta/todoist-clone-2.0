@@ -1,15 +1,20 @@
 .Sidebar {
-  flex-shrink: 0;
+  position: absolute;
+  top: 0;
+  left: -260px;
+  z-index: 2;
+  min-height: 100%;
   overflow-x: hidden;
-  width: 0;
+  width: 260px;
   height: 100%;
   padding-top: $headerHeight;
-  transition: width 0.4s ease-in;
+  transition: all 0.4s ease-in;
   background: $lightPrimary;
   box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.05);
+
   &--open {
-    width: 260px;
-    transition: width 0.4s ease-out;
+    left: 0;
+    transition: all 0.4s ease-out;
   }
 
   .Title {

@@ -1,10 +1,16 @@
 import React from 'react';
+import { useSidebarValue } from '../../../context/sidebar-context';
 
 export const Header: React.FC = props => {
+  const sidebarValues = useSidebarValue();
   return (
     <div className="Header">
       <div className="Header__left">
-        <div className="Icon Icon__menu">
+        <div
+          className="Icon Icon__menu"
+          role="button"
+          onClick={() => sidebarValues && sidebarValues.setIsOpen(!sidebarValues.isOpen)}
+        >
           <img src="/images/burger-menu.svg" alt="burger menu" />
         </div>
         <div className="Button" role="button" onClick={() => console.log('clicked')}>

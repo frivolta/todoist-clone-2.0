@@ -1,9 +1,8 @@
 .Content {
-  display: flex;
-  flex-direction: column;
   width: 100%;
   height: 100%;
   padding-top: $headerHeight;
+  position: relative;
 
   &__main {
     display: flex;
@@ -11,5 +10,12 @@
     justify-content: center;
     align-items: center;
     padding: 32px;
+    margin-left: 0;
+    transition: all 0.4s ease-out;
+
+    &--isOpen {
+      margin-left: 260px;
+      transition: all 0.4s ease-out;
+    }
   }
 }
