@@ -1,0 +1,44 @@
+.Input {
+  display: flex;
+  justify-content: center;
+  padding: 16px 32px;
+  font-family: $poppins;
+  font-size: $base;
+  color: $darkPrimary;
+
+  &--small {
+    justify-content: flex-start;
+    font-weight: 300;
+  }
+
+  &__field {
+    width: 100%;
+    padding: 16px 32px;
+    border-radius: 10px;
+    box-shadow: none;
+    border: 1px solid $darkSecondary;
+    color: $darkPrimary;
+    outline: none;
+
+    &::placeholder {
+      color: $darkPrimary;
+    }
+
+    &:focus {
+      border: 1px solid $primaryColor;
+      transition: all 0.5s;
+    }
+
+    &--small {
+      border: none;
+      border-bottom: 1px solid $darkSecondary;
+      border-radius: 0;
+      padding: 8px 0;
+      &:focus {
+        border: none;
+        border-bottom: 1px solid $primaryColor !important;
+        transition: all 0.5s;
+      }
+    }
+  }
+}
