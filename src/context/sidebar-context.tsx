@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useSidebar } from '../hooks/sidebar-hook';
 
 // Define types
 type SidebarProviderProps = { children: React.ReactNode };
@@ -12,14 +13,14 @@ const SidebarContext = React.createContext<ISidebarContext | undefined>(undefine
 
 // Generate provider
 const SidebarProvider = ({ children }: SidebarProviderProps) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const { isOpen, setIsOpen } = useSidebar(true);
 
   return (
     <SidebarContext.Provider value={{ isOpen, setIsOpen }}>{children}</SidebarContext.Provider>
   );
 };
 
-// Custom hook
+// Custom context hook
 const useSidebarValue = () => {
   return React.useContext(SidebarContext);
 };

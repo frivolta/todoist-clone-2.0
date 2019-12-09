@@ -2,6 +2,7 @@ import React from 'react';
 
 interface IProjectListItem {
   active?: boolean;
+  children?: string;
 }
 
 export const ProjectListItem: React.FC<IProjectListItem> = props => (
@@ -11,7 +12,7 @@ export const ProjectListItem: React.FC<IProjectListItem> = props => (
       role="button"
       onClick={() => console.log('item clicked')}
     >
-      Grocery store
+      {props.children}
     </span>
     <span
       className={`ProjectList__item__button ${props.active && `ProjectList__item__button--active`}`}

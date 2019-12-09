@@ -1,10 +1,23 @@
 import React from 'react';
 import { ProjectListItem } from './ProjectListItem';
 
-export const ProjectList: React.FC = () => (
-  <div className="ProjectList">
-    <ProjectListItem active />
-    <ProjectListItem />
-    <ProjectListItem />
-  </div>
-);
+import { useProjectsValue } from '../context/projects-context';
+
+interface IProject {
+  name: string;
+  projectId: string;
+  userId: string;
+  docId: string;
+}
+
+export const ProjectList: React.FC = () => {
+  const { projects } = useProjectsValue();
+  console.log(projects);
+  return (
+    <div className="ProjectList">
+      {projects.map((project: IProject) => (
+        <ProjectListItem key={project.docId}>{project.name}</ProjectListItem>
+      ))}
+    </div>
+  );
+};

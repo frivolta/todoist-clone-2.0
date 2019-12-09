@@ -7,6 +7,8 @@ import { Header } from './components/layout/header/Header';
 
 import { SidebarProvider } from './context/sidebar-context';
 
+import { ProjectsProvider } from './context/projects-context';
+
 //@Todo: Should be a custom hooks, handled with context
 //@Todo: Responsive version
 //@Todo: Using custom font
@@ -16,10 +18,12 @@ import { SidebarProvider } from './context/sidebar-context';
 
 export const App: React.FC<IApp> = () => {
   return (
-    <SidebarProvider>
-      <Header />
-      <Sidebar />
-      <Content />
-    </SidebarProvider>
+    <ProjectsProvider>
+      <SidebarProvider>
+        <Header />
+        <Sidebar />
+        <Content />
+      </SidebarProvider>
+    </ProjectsProvider>
   );
 };
