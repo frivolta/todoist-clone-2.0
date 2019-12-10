@@ -12,7 +12,7 @@ interface IProject {
 
 export const ProjectList: React.FC = () => {
   const { projects } = useProjectsValue();
-  console.log(projects);
+
   return (
     <div className="ProjectList">
       {projects.map((project: IProject) => (
