@@ -1,21 +1,13 @@
 import React from 'react';
+import { defaultProjects } from '../constants/defaultProjects';
+import { MenuItem } from './MenuItem';
 
-export const Menu = () => (
-  <ul className="Menu">
-    <li className="Menu__item">
-      <a className="Menu__item__link" href="/">
-        Inbox
-      </a>
-    </li>
-    <li className="Menu__item">
-      <a className="Menu__item__link" href="/">
-        Next 7 days
-      </a>
-    </li>
-    <li className="Menu__item">
-      <a className="Menu__item__link" href="/">
-        Today
-      </a>
-    </li>
-  </ul>
-);
+export const Menu: React.FC = () => {
+  return (
+    <ul className="Menu">
+      {defaultProjects.map(project => (
+        <MenuItem key={project.key} project={project} />
+      ))}
+    </ul>
+  );
+};

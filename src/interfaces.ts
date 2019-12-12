@@ -4,12 +4,6 @@ export interface Iicon {
   opacity?: any;
 }
 
-// MenuItem component
-export interface IMenuItem {
-  active: boolean;
-  title: string;
-  handleClick: (newItem: string) => void;
-}
 // Sidebar component
 export interface ISidebar {
   onChange: (value: string) => void;
@@ -24,4 +18,35 @@ export interface IHeader {
 // App component
 export interface IApp {
   handleSelectedItem: (value: string) => void;
+}
+
+// Project component
+export interface IProject {
+  docId?: string;
+  name?: string;
+  projectId?: string;
+  userId?: string;
+}
+
+// ProjectList component
+export interface IProjectListItemProps {
+  active?: boolean;
+  children?: string;
+  handleClick: (event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void;
+}
+
+export interface IMenuItemProject extends IProject {
+  key: string;
+}
+//MenuItem component
+export interface IMenuItem {
+  key: string;
+  project: IMenuItemProject;
+}
+
+// Generic
+export interface IfetchStatus {
+  isLoading?: boolean;
+  hasError?: boolean;
+  hasSuccess?: boolean;
 }

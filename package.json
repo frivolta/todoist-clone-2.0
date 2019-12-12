@@ -8,6 +8,7 @@
     "@types/node": "^12.12.12",
     "@types/react": "^16.9.13",
     "@types/react-dom": "^16.9.4",
+    "@types/uuid": "^3.4.6",
     "aphrodite": "^2.4.0",
     "cypress": "^3.6.1",
     "firebase": "^6.2.4",
@@ -18,8 +19,10 @@
     "react-dom": "^16.8.6",
     "react-icons": "^3.7.0",
     "react-scripts": "3.0.1",
+    "react-uuid": "^1.0.2",
     "simple-flexbox": "^2.3.0",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.2",
+    "uuid": "^3.3.3"
   },
   "jest": {
     "collectCoverageFrom": [

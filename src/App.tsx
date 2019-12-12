@@ -6,7 +6,7 @@ import { Content } from './components/layout/content/Content';
 import { Header } from './components/layout/header/Header';
 
 import { SidebarProvider } from './context/sidebar-context';
-
+import { ActiveProjectProvider } from './context/active-project-context';
 import { ProjectsProvider } from './context/projects-context';
 
 //@Todo: Should be a custom hooks, handled with context
@@ -19,11 +19,13 @@ import { ProjectsProvider } from './context/projects-context';
 export const App: React.FC<IApp> = () => {
   return (
     <ProjectsProvider>
-      <SidebarProvider>
-        <Header />
-        <Sidebar />
-        <Content />
-      </SidebarProvider>
+      <ActiveProjectProvider>
+        <SidebarProvider>
+          <Header />
+          <Sidebar />
+          <Content />
+        </SidebarProvider>
+      </ActiveProjectProvider>
     </ProjectsProvider>
   );
 };

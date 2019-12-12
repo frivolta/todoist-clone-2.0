@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import { firebase } from '../firebase';
+import { IProject } from '../interfaces';
+import { defaultProjects } from '../constants/defaultProjects';
 
 interface State {
   docId?: string;
 }
 
+// Get projects from firebase hook
 export const useProjects = () => {
   const [projects, setProjects] = useState<State[] | []>([]);
 
@@ -28,4 +31,16 @@ export const useProjects = () => {
   }, [projects]);
 
   return { projects, setProjects };
+};
+
+// Set the active project
+export const useActiveProject = (project?: State) => {
+  const [activeProject, setActiveProject] = useState<State | IProject | undefined>();
+
+  useEffect(() => {
+    setActiveProject(project);
+  }, [project]);
+
+  console.log(activeProject);
+  return { activeProject, setActiveProject };
 };

@@ -1,16 +1,12 @@
 import React from 'react';
+import { IProjectListItemProps } from '../interfaces';
 
-interface IProjectListItem {
-  active?: boolean;
-  children?: string;
-}
-
-export const ProjectListItem: React.FC<IProjectListItem> = props => (
+export const ProjectListItem: React.FC<IProjectListItemProps> = props => (
   <div className="ProjectList__item">
     <span
       className={`ProjectList__item__label ${props.active && `ProjectList__item__label--active`}`}
       role="button"
-      onClick={() => console.log('item clicked')}
+      onClick={props.handleClick}
     >
       {props.children}
     </span>

@@ -17,7 +17,7 @@ interface IProjectsContext {
 type TProjectsProviderProps = { children: React.ReactNode };
 
 // Generate context
-const ProjectsContext = React.createContext<IProjectsContext | [] | any>([]);
+const ProjectsContext = React.createContext<IProjectsContext | [] | any>(undefined);
 
 // Generate provider
 const ProjectsProvider = ({ children }: TProjectsProviderProps) => {
