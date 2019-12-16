@@ -1,4 +1,7 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { Store } from 'redux';
+import configureStore, { IAppState } from './store';
 
 import { IApp } from './interfaces';
 import { Sidebar } from './components/layout/sidebar/Sidebar';
@@ -16,16 +19,18 @@ import { ProjectsProvider } from './context/projects-context';
 //@Todo: Storybook
 //@Todo: PWA version
 
-export const App: React.FC<IApp> = () => {
+export const App: React.FC<IApp> = props => {
   return (
-    <ProjectsProvider>
-      <ActiveProjectProvider>
-        <SidebarProvider>
-          <Header />
-          <Sidebar />
-          <Content />
-        </SidebarProvider>
-      </ActiveProjectProvider>
-    </ProjectsProvider>
+    <Provider store={props.store}>
+      <ProjectsProvider>
+        <ActiveProjectProvider>
+          <SidebarProvider>
+            <Header />
+            <Sidebar />
+            <Content />
+          </SidebarProvider>
+        </ActiveProjectProvider>
+      </ProjectsProvider>
+    </Provider>
   );
 };

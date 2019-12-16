@@ -1,4 +1,7 @@
 // Iconst interface
+import { Store } from 'redux';
+import { IAppState } from './store/index';
+
 export interface Iicon {
   fill?: any;
   opacity?: any;
@@ -17,7 +20,8 @@ export interface IHeader {
 
 // App component
 export interface IApp {
-  handleSelectedItem: (value: string) => void;
+  handleSelectedItem?: (value: string) => void;
+  store: Store<IAppState>;
 }
 
 // Project component
