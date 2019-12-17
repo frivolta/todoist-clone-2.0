@@ -24,29 +24,32 @@ export type ProjectActions = IProjectsRequest;
 
 /* Project requests'
 <Promise<Return Type>, State Interface, Type of Param, Type of Action> */
-export const getProjectsAction: ActionCreator<ThunkAction<
-  Promise<any>,
-  IProjectsState,
-  null,
-  IProjectsRequest
->> = () => async (dispatch: Dispatch) => {
+export const getProjectsAction: ActionCreator<
+  ThunkAction<Promise<any>, IProjectsState, null, IProjectsRequest>
+> = () => async (dispatch: Dispatch) => {
   try {
-    /*     firebase
+    dispatch({ type: ProjectsActionTypes.PROJECTS_REQUEST });
+    const data = await firebase
       .firestore()
       .collection('projects')
       .where('userId', '==', 'eacf2a2d-ac94-4550-a02a-5f9b2df03bfe')
       .orderBy('projectId')
       .get()
       .then(snapshot => {
-        const allProjects = snapshot.docs.map(project => ({
+        return snapshot.docs.map(project => ({
           ...project.data(),
           docId: project.id
-        })); */
+        }));
+      });
     dispatch({
-      characters: response,
-      type: ProjectsActionTypes.PROJECTS_REQUEST
+      projects: data,
+      type: ProjectsActionTypes.PROJECTS_IS_SUCCESS
     });
-  } catch (err) {
-    console.error(err);
+  } catch {
+    dispatch({
+      type: ProjectsActionTypes.PROJECTS_HAS_ERRORS
+    });
   }
 };
+
+const projectsIsLoading = (isLoading: boolean) => ({});

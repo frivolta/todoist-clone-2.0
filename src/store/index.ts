@@ -1,4 +1,4 @@
-import { applyMiddleware, combineReducers, createStore, Store, AnyAction } from 'redux';
+import { applyMiddleware, combineReducers, createStore, Store } from 'redux';
 import thunk from 'redux-thunk';
 import { IProjectsState, projectsReducer } from './projects/project.reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';

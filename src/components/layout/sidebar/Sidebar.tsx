@@ -1,20 +1,17 @@
 import * as React from 'react';
 import uuid from 'uuid';
 import { useState } from 'react';
-import { firebase } from '../../../firebase';
 import { Menu } from '../../Menu';
 import { Title } from '../../Title';
 import { ProjectList } from '../../ProjectList';
 import { Input } from '../../Input';
 
 import { useSidebarValue } from '../../../context/sidebar-context';
-import { useProjectsValue } from '../../../context/projects-context';
 
 import { IProject, IfetchStatus } from '../../../interfaces';
 
-export const Sidebar: React.FC = props => {
+export const Sidebar: React.FC = (props: any) => {
   const sidebarValues = useSidebarValue();
-  const { projects, setProjects } = useProjectsValue();
   const initialState = { isLoading: false, hasError: false, hasSuccess: false };
 
   const [newProjectName, setNewProjectName] = useState('');
@@ -48,19 +45,7 @@ export const Sidebar: React.FC = props => {
     project.name = projectName;
     project.userId = 'eacf2a2d-ac94-4550-a02a-5f9b2df03bfe';
     project.projectId = uuid();
-    try {
-      await setFetchStatus({ isLoading: true, hasError: false, hasSuccess: false });
-      await firebase
-        .firestore()
-        .collection('projects')
-        .add(project);
-      await setProjects([...projects]);
-      setFetchStatus({ isLoading: false, hasSuccess: true, hasError: false });
-    } catch (error) {
-      setFetchStatus({ isLoading: false, hasSuccess: false, hasError: true });
-    }
   };
-
   return (
     <div
       className={`${sidebarValues && sidebarValues.isOpen ? `Sidebar Sidebar--open` : `Sidebar`}`}

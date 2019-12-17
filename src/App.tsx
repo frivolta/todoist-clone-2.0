@@ -1,7 +1,5 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Store } from 'redux';
-import configureStore, { IAppState } from './store';
 
 import { IApp } from './interfaces';
 import { Sidebar } from './components/layout/sidebar/Sidebar';

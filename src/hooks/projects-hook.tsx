@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { firebase } from '../firebase';
 import { IProject } from '../interfaces';
-import { defaultProjects } from '../constants/defaultProjects';
 
 interface State {
   docId?: string;
@@ -41,6 +40,5 @@ export const useActiveProject = (project?: State) => {
     setActiveProject(project);
   }, [project]);
 
-  console.log(activeProject);
   return { activeProject, setActiveProject };
 };
