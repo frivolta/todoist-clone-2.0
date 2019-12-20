@@ -8,7 +8,9 @@ import { IProject } from '../../interfaces';
 // Import projects typing
 export enum ProjectsActionTypes {
   PROJECTS_REQUEST = 'PROJECTS_REQUEST',
-  PROJECTS_IS_SUCCESS = 'PROJECTS_IS_SUCCESS',
+  PROJECTS_ADD = 'PROJECTS_ADD',
+  PROJECTS_REMOVE = 'PROJECTS_REMOVE',
+  PROJECTS_IS_LOADING = 'PROJECTS_IS_SUCCESS',
   PROJECTS_HAS_ERRORS = 'PROJECTS_HAS_ERRORRS'
 }
 
@@ -22,13 +24,14 @@ export interface IProjectsRequest {
 // Combine actions with a uinion action | action
 export type ProjectActions = IProjectsRequest;
 
-/* Project requests'
+/* Get Projects
 <Promise<Return Type>, State Interface, Type of Param, Type of Action> */
 export const getProjectsAction: ActionCreator<
   ThunkAction<Promise<any>, IProjectsState, null, IProjectsRequest>
 > = () => async (dispatch: Dispatch) => {
+  const proj = '3X4QgWdIzjVfPEj4vrBZ';
   try {
-    dispatch({ type: ProjectsActionTypes.PROJECTS_REQUEST });
+    dispatch(projectIsLoading(true));
     const data = await firebase
       .firestore()
       .collection('projects')
@@ -41,15 +44,58 @@ export const getProjectsAction: ActionCreator<
           docId: project.id
         }));
       });
+    const data_two = await firebase
+      .firestore()
+      .collection('projects')
+      .doc(proj)
+      .delete();
     dispatch({
       projects: data,
-      type: ProjectsActionTypes.PROJECTS_IS_SUCCESS
+      type: ProjectsActionTypes.PROJECTS_REQUEST
     });
+    dispatch(projectIsLoading(false));
   } catch {
     dispatch({
       type: ProjectsActionTypes.PROJECTS_HAS_ERRORS
     });
+    dispatch(projectIsLoading(false));
   }
 };
 
-const projectsIsLoading = (isLoading: boolean) => ({});
+/* Add Project
+<Promise<Return Type>, State Interface, Type of Param, Type of Action> */
+export const addProjectAction: ActionCreator<
+  ThunkAction<Promise<any>, IProjectsState, null, IProjectsRequest>
+> = project => async (dispatch: Dispatch) => {
+  const proj = {
+    name: 'projectName',
+    userId: 'eacf2a2d-ac94-4550-a02a-5f9b2df03bfe',
+    projectId: 'uuid()'
+  };
+  try {
+    dispatch(projectIsLoading(true));
+    const data = await firebase
+      .firestore()
+      .collection('projects')
+      .add(proj);
+    dispatch({
+      projects: data,
+      type: ProjectsActionTypes.PROJECTS_REQUEST
+    });
+    dispatch(projectIsLoading(false));
+  } catch {
+    dispatch({
+      type: ProjectsActionTypes.PROJECTS_HAS_ERRORS
+    });
+    dispatch(projectIsLoading(false));
+  }
+};
+
+export const projectIsLoading = (isLoading: boolean) => ({
+  type: ProjectsActionTypes.PROJECTS_IS_LOADING,
+  isLoading
+});
+
+export const projectHasErrors = () => ({
+  type: ProjectsActionTypes.PROJECTS_HAS_ERRORS
+});

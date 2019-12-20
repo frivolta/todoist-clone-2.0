@@ -21,19 +21,28 @@ export const projectsReducer: Reducer<IProjectsState> = (state = initialProjects
       return {
         ...state,
         errors: undefined,
-        isLoading: true
+        projects: action.projects
       };
-    case ProjectsActionTypes.PROJECTS_IS_SUCCESS:
+    case ProjectsActionTypes.PROJECTS_ADD:
       return {
         ...state,
-        isLoading: false,
         errors: undefined,
-        projects: action.projects
+        projects: [...state.projects, action.project]
+      };
+    case ProjectsActionTypes.PROJECTS_REMOVE:
+      return {
+        ...state,
+        errors: undefined,
+        projects: state.projects.filter(project => project !== action.project)
+      };
+    case ProjectsActionTypes.PROJECTS_IS_LOADING:
+      return {
+        ...state,
+        isLoading: action.isLoading
       };
     case ProjectsActionTypes.PROJECTS_HAS_ERRORS:
       return {
         ...state,
-        isLoading: false,
         errors: 'Error retrieving your projects'
       };
     default:
