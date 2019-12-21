@@ -8,7 +8,6 @@ import { Header } from './components/layout/header/Header';
 
 import { SidebarProvider } from './context/sidebar-context';
 import { ActiveProjectProvider } from './context/active-project-context';
-import { ProjectsProvider } from './context/projects-context';
 
 //@Todo: Should be a custom hooks, handled with context
 //@Todo: Responsive version
@@ -20,15 +19,13 @@ import { ProjectsProvider } from './context/projects-context';
 export const App: React.FC<IApp> = props => {
   return (
     <Provider store={props.store}>
-      <ProjectsProvider>
-        <ActiveProjectProvider>
-          <SidebarProvider>
-            <Header />
-            <Sidebar />
-            <Content />
-          </SidebarProvider>
-        </ActiveProjectProvider>
-      </ProjectsProvider>
+      <ActiveProjectProvider>
+        <SidebarProvider>
+          <Header />
+          <Sidebar />
+          <Content />
+        </SidebarProvider>
+      </ActiveProjectProvider>
     </Provider>
   );
 };

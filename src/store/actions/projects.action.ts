@@ -67,22 +67,7 @@ export const addProjectAction: ActionCreator<
       .firestore()
       .collection('projects')
       .add(project);
-    const data = await firebase
-      .firestore()
-      .collection('projects')
-      .where('userId', '==', 'eacf2a2d-ac94-4550-a02a-5f9b2df03bfe')
-      .orderBy('projectId')
-      .get()
-      .then(snapshot => {
-        return snapshot.docs.map(project => ({
-          ...project.data(),
-          docId: project.id
-        }));
-      });
-    dispatch({
-      projects: data,
-      type: ProjectsActionTypes.PROJECTS_REQUEST
-    });
+
     dispatch(projectIsLoading(false));
   } catch {
     dispatch({
@@ -105,22 +90,7 @@ export const deleteProjectAction: ActionCreator<
       .collection('projects')
       .doc(projectDocId)
       .delete();
-    const data = await firebase
-      .firestore()
-      .collection('projects')
-      .where('userId', '==', 'eacf2a2d-ac94-4550-a02a-5f9b2df03bfe')
-      .orderBy('projectId')
-      .get()
-      .then(snapshot => {
-        return snapshot.docs.map(project => ({
-          ...project.data(),
-          docId: project.id
-        }));
-      });
-    dispatch({
-      projects: data,
-      type: ProjectsActionTypes.PROJECTS_REQUEST
-    });
+
     dispatch(projectIsLoading(false));
   } catch {
     dispatch({

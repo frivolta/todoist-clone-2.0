@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import uuid from 'uuid';
 
@@ -15,9 +15,9 @@ export const ProjectList: React.FC = () => {
   const dispatch = useDispatch();
   const { setActiveProject } = useActiveProjectValue();
 
-  useEffect(() => {
+  useMemo(() => {
     dispatch(getProjectsAction());
-  }, [dispatch]);
+  }, [projects]);
 
   const handleClick = (project: IProject) => setActiveProject(project);
 

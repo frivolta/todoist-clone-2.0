@@ -23,15 +23,6 @@ export interface IApp {
   handleSelectedItem?: (value: string) => void;
   store: Store<IAppState>;
 }
-
-// Project component
-export interface IProject {
-  docId?: string;
-  name?: string;
-  projectId?: string;
-  userId?: string;
-}
-
 // ProjectList component
 export interface IProjectListItemProps {
   active?: boolean;
@@ -47,6 +38,23 @@ export interface IMenuItemProject extends IProject {
 export interface IMenuItem {
   key: string;
   project: IMenuItemProject;
+}
+
+// Task component
+export interface ITask {
+  docId?: string;
+  taskId: string;
+  task?: string;
+  projectId?: string;
+  userId?: string;
+  isArchived: boolean;
+}
+// Project component
+export interface IProject {
+  docId?: string;
+  name?: string;
+  projectId?: string;
+  userId?: string;
 }
 
 // Generic

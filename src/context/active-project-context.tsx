@@ -23,7 +23,6 @@ const ActiveProjectContext = React.createContext<IActiveProject | any | undefine
 
 const ActiveProjectProvider = ({ children }: ActiveProjectProps) => {
   const { activeProject, setActiveProject } = useActiveProject();
-
   return (
     <ActiveProjectContext.Provider value={{ activeProject, setActiveProject }}>
       {children}
