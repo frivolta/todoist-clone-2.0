@@ -29,7 +29,6 @@ export type ProjectActions = IProjectsRequest;
 export const getProjectsAction: ActionCreator<
   ThunkAction<Promise<any>, IProjectsState, null, IProjectsRequest>
 > = () => async (dispatch: Dispatch) => {
-  const proj = '3X4QgWdIzjVfPEj4vrBZ';
   try {
     dispatch(projectIsLoading(true));
     const data = await firebase
@@ -44,11 +43,6 @@ export const getProjectsAction: ActionCreator<
           docId: project.id
         }));
       });
-    const data_two = await firebase
-      .firestore()
-      .collection('projects')
-      .doc(proj)
-      .delete();
     dispatch({
       projects: data,
       type: ProjectsActionTypes.PROJECTS_REQUEST
@@ -66,18 +60,63 @@ export const getProjectsAction: ActionCreator<
 <Promise<Return Type>, State Interface, Type of Param, Type of Action> */
 export const addProjectAction: ActionCreator<
   ThunkAction<Promise<any>, IProjectsState, null, IProjectsRequest>
-> = project => async (dispatch: Dispatch) => {
-  const proj = {
-    name: 'projectName',
-    userId: 'eacf2a2d-ac94-4550-a02a-5f9b2df03bfe',
-    projectId: 'uuid()'
-  };
+> = (project: IProject) => async (dispatch: Dispatch) => {
   try {
     dispatch(projectIsLoading(true));
+    await firebase
+      .firestore()
+      .collection('projects')
+      .add(project);
     const data = await firebase
       .firestore()
       .collection('projects')
-      .add(proj);
+      .where('userId', '==', 'eacf2a2d-ac94-4550-a02a-5f9b2df03bfe')
+      .orderBy('projectId')
+      .get()
+      .then(snapshot => {
+        return snapshot.docs.map(project => ({
+          ...project.data(),
+          docId: project.id
+        }));
+      });
+    dispatch({
+      projects: data,
+      type: ProjectsActionTypes.PROJECTS_REQUEST
+    });
+    dispatch(projectIsLoading(false));
+  } catch {
+    dispatch({
+      type: ProjectsActionTypes.PROJECTS_HAS_ERRORS
+    });
+    dispatch(projectIsLoading(false));
+  }
+};
+
+/* Delete project
+<Promise<Return Type>, State Interface, Type of Param, Type of Action> */
+export const deleteProjectAction: ActionCreator<
+  ThunkAction<Promise<any>, IProjectsState, null, IProjectsRequest>
+> = (projectDocId: string) => async (dispatch: Dispatch) => {
+  try {
+    console.log('called');
+    dispatch(projectIsLoading(true));
+    await firebase
+      .firestore()
+      .collection('projects')
+      .doc(projectDocId)
+      .delete();
+    const data = await firebase
+      .firestore()
+      .collection('projects')
+      .where('userId', '==', 'eacf2a2d-ac94-4550-a02a-5f9b2df03bfe')
+      .orderBy('projectId')
+      .get()
+      .then(snapshot => {
+        return snapshot.docs.map(project => ({
+          ...project.data(),
+          docId: project.id
+        }));
+      });
     dispatch({
       projects: data,
       type: ProjectsActionTypes.PROJECTS_REQUEST

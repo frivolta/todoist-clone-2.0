@@ -28,6 +28,7 @@ export const ProjectList: React.FC = () => {
           <ProjectListItem
             key={project.docId ? project.projectId : uuid()}
             handleClick={() => handleClick(project)}
+            project={project}
           >
             {project.name}
           </ProjectListItem>

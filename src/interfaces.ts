@@ -36,6 +36,7 @@ export interface IProject {
 export interface IProjectListItemProps {
   active?: boolean;
   children?: string;
+  project: IProject;
   handleClick: (event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void;
 }
 

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
 import uuid from 'uuid';
 import { useState } from 'react';
 import { Menu } from '../../Menu';
@@ -7,11 +8,13 @@ import { ProjectList } from '../../ProjectList';
 import { Input } from '../../Input';
 
 import { useSidebarValue } from '../../../context/sidebar-context';
+import { addProjectAction } from '../../../store/actions/projects.action';
 
 import { IProject, IfetchStatus } from '../../../interfaces';
 
 export const Sidebar: React.FC = (props: any) => {
   const sidebarValues = useSidebarValue();
+  const dispatch = useDispatch();
   const initialState = { isLoading: false, hasError: false, hasSuccess: false };
 
   const [newProjectName, setNewProjectName] = useState('');
@@ -45,6 +48,7 @@ export const Sidebar: React.FC = (props: any) => {
     project.name = projectName;
     project.userId = 'eacf2a2d-ac94-4550-a02a-5f9b2df03bfe';
     project.projectId = uuid();
+    dispatch(addProjectAction(project));
   };
   return (
     <div
