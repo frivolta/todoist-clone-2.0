@@ -40,11 +40,17 @@ export interface IMenuItem {
   project: IMenuItemProject;
 }
 
+//TaskItem component
+export interface ITaskItem {
+  text: string;
+  archived: boolean;
+}
+
 // Task component
 export interface ITask {
   docId?: string;
   taskId: string;
-  task?: string;
+  task: string;
   projectId?: string;
   userId?: string;
   isArchived: boolean;

@@ -57,7 +57,8 @@ export const getTasksAction: ActionCreator<
       tasks: data
     });
     dispatch(taskIsLoading(false));
-  } catch {
+  } catch (err) {
+    console.log(err);
     dispatch(taskIsLoading(false));
     dispatch(taskHasErrors());
   }
