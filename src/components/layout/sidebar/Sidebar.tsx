@@ -8,9 +8,10 @@ import { ProjectList } from '../../ProjectList';
 import { Input } from '../../Input';
 
 import { useSidebarValue } from '../../../context/sidebar-context';
-import { addProjectAction } from '../../../store/actions/projects.action';
+import { addProjectAction, getProjectsAction } from '../../../store/actions/projects.action';
 
 import { IProject, IfetchStatus } from '../../../interfaces';
+import { getTasksAction } from '../../../store/actions/tasks.action';
 
 export const Sidebar: React.FC = (props: any) => {
   const sidebarValues = useSidebarValue();

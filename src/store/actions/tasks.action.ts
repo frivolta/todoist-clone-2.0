@@ -37,7 +37,7 @@ export type TaskActions = ITaskRequest | ITaskLoading | ITaskErrors | ITaskEdit;
 // Get tasks by ProjectId
 export const getTasksAction: ActionCreator<
   ThunkAction<Promise<any>, ITaskState, string, TaskActions>
-> = (projectId = '1') => async (dispatch: Dispatch) => {
+> = (projectId = 'INBOX') => async (dispatch: Dispatch) => {
   try {
     dispatch(taskIsLoading(true));
     const data = await firebase
@@ -49,7 +49,8 @@ export const getTasksAction: ActionCreator<
       .get()
       .then(snapshot => {
         return snapshot.docs.map(task => ({
-          ...task.data()
+          ...task.data(),
+          docId: task.id
         }));
       });
     dispatch({
@@ -67,15 +68,18 @@ export const getTasksAction: ActionCreator<
 export const editTaskAction: ActionCreator<
   ThunkAction<Promise<any>, ITaskState, ITask, TaskActions>
 > = (task: ITask) => async (dispatch: Dispatch) => {
+  console.log('Called edit');
   try {
     dispatch(taskIsLoading(true));
+    console.log('task', task);
     await firebase
       .firestore()
       .collection('tasks')
       .doc(task.docId)
       .update(task);
     dispatch(taskIsLoading(false));
-  } catch {
+  } catch (err) {
+    console.log(err);
     dispatch(taskIsLoading(false));
     dispatch(taskHasErrors());
   }

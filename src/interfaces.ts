@@ -42,8 +42,8 @@ export interface IMenuItem {
 
 //TaskItem component
 export interface ITaskItem {
-  text: string;
-  archived: boolean;
+  task: ITask;
+  project: IProject;
 }
 
 // Task component

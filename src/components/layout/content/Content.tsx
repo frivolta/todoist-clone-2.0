@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import uuid from 'uuid';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -42,11 +42,12 @@ export const Content: React.FC = () => {
       userId: 'eacf2a2d-ac94-4550-a02a-5f9b2df03bfe'
     };
     dispatch(addTaskAction(task));
+    dispatch(getTasksAction(project.projectId));
   };
 
   useMemo(() => {
     activeProject && dispatch(getTasksAction(activeProject.projectId));
-  }, [activeProject, tasks]);
+  }, [activeProject]);
 
   return (
     <div className="Content">
@@ -55,16 +56,18 @@ export const Content: React.FC = () => {
           sidebarValues.isOpen &&
           `Content__main--isOpen`}`}
       >
-        <Display tasksNumber={tasks.length} />
+        <Display tasksNumber={tasks.filter(task => !task.isArchived).length} />
         <Card>
-          {activeProject && tasks
-            ? tasks.map((task, key) => (
-                <TaskItem text={task.task} key={key} archived={task.isArchived} />
-              ))
+          {isLoading
+            ? 'Loading tasks'
+            : activeProject && tasks
+            ? tasks.map((task, key) => <TaskItem task={task} key={key} project={activeProject} />)
             : 'Select a project to show tasks'}
+          {errors && errors}
         </Card>
         {activeProject && (
           <Card className="mt-2">
+            {errors && errors}
             <Input
               placeholder="Type new task and press enter"
               value={newTaskName}
