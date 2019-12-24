@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { IAppState } from '../store/index';
@@ -11,11 +11,9 @@ interface ProjectSelect {
 
 export const ProjectSelect: React.FC<ProjectSelect> = props => {
   const { projects } = useSelector((store: IAppState) => store.projectState);
-  const [project, setProject] = useState<IProject | undefined>(undefined);
 
   const handleProjectChange = (e: React.FormEvent<HTMLSelectElement>) => {
     const selectedProject = projects.filter(project => project.projectId === e.currentTarget.value);
-    setProject(selectedProject[0]);
     props.handleChange(selectedProject[0]);
   };
   return (

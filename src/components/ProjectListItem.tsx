@@ -2,16 +2,19 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { IProjectListItemProps, IProject } from '../interfaces';
-import { deleteProjectAction } from '../store/actions/projects.action';
+import { deleteProjectAction, getProjectsAction } from '../store/actions/projects.action';
 import { useActiveProjectValue } from '../context/active-project-context';
 import { isCurrentProject } from '../helpers/projects.helpers';
 
 export const ProjectListItem: React.FC<IProjectListItemProps> = props => {
   const dispatch = useDispatch();
-  const { activeProject, setActiveProject } = useActiveProjectValue();
+  const { activeProject } = useActiveProjectValue();
 
   const active = isCurrentProject(props.project, activeProject);
-  const deleteProject = (project: IProject) => dispatch(deleteProjectAction(project.docId));
+  const deleteProject = async (project: IProject) => {
+    await dispatch(deleteProjectAction(project.docId));
+    dispatch(getProjectsAction());
+  };
 
   return (
     <div className="ProjectList__item">

@@ -4,7 +4,7 @@ import uuid from 'uuid';
 
 import { useDispatch } from 'react-redux';
 
-import { getTasksAction, addTaskAction } from '../../../store/actions/tasks.action';
+import { addTaskAction } from '../../../store/actions/tasks.action';
 
 import { Display } from '../../Display';
 import { Card } from '../../Card';

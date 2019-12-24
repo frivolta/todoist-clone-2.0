@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState } from 'react';
 import uuid from 'uuid';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -45,7 +45,7 @@ export const ActiveProjectContent: React.FC = () => {
 
   useMemo(() => {
     activeProject && dispatch(getTasksAction(activeProject.projectId));
-  }, [activeProject]);
+  }, [dispatch, activeProject]);
 
   return (
     <>

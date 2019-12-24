@@ -11,7 +11,6 @@ import { useSidebarValue } from '../../../context/sidebar-context';
 import { addProjectAction, getProjectsAction } from '../../../store/actions/projects.action';
 
 import { IProject, IfetchStatus } from '../../../interfaces';
-import { getTasksAction } from '../../../store/actions/tasks.action';
 
 export const Sidebar: React.FC = (props: any) => {
   const sidebarValues = useSidebarValue();
@@ -39,8 +38,13 @@ export const Sidebar: React.FC = (props: any) => {
     fetchStatus !== initialState && setFetchStatus(initialState);
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) =>
-    e.key === 'Enter' && addProjectToDb(newProjectName) && clearProjectInput();
+  const handleKeyPress = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      await addProjectToDb(newProjectName);
+      clearProjectInput();
+      dispatch(getProjectsAction());
+    }
+  };
 
   const clearProjectInput = () => setNewProjectName('');
 

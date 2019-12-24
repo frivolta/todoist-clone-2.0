@@ -8,7 +8,7 @@ import { NewTaskContent } from './NewTaskContent';
 import { ActiveProjectContent } from './ActiveProjectContent';
 
 export const Content: React.FC = () => {
-  const { isNewTask, setIsNewTask } = useIsNewTaskValue();
+  const { isNewTask } = useIsNewTaskValue();
   const sidebarValues = useSidebarValue();
 
   return (

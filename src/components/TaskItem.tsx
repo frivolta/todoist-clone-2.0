@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { ITaskItem } from '../interfaces';
 import { useDispatch } from 'react-redux';
 import { editTaskAction, getTasksAction } from '../store/actions/tasks.action';
-import useEffect from 'react';
 
 export const TaskItem: React.FC<ITaskItem> = props => {
   const [archived, setArchived] = useState(false);

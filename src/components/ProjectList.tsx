@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import uuid from 'uuid';
 
@@ -17,15 +17,15 @@ export const ProjectList: React.FC = () => {
   const { setActiveProject } = useActiveProjectValue();
   const { setIsNewTask } = useIsNewTaskValue();
 
-  useMemo(() => {
+  useEffect(() => {
     dispatch(getProjectsAction());
-  }, [projects]);
+  }, [dispatch]);
 
   const handleClick = (project: IProject) => {
     setActiveProject(project);
     setIsNewTask(false);
   };
-
+  console.log(projects);
   return (
     <div className="ProjectList">
       {!isLoading ? (
