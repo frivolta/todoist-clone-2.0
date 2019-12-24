@@ -6,7 +6,7 @@ export const Menu: React.FC = () => {
   return (
     <ul className="Menu">
       {defaultProjects.map(project => (
-        <MenuItem key={project.key} project={project} />
+        <MenuItem key={project.projectId} project={project} />
       ))}
     </ul>
   );

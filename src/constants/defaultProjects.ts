@@ -1,5 +1,7 @@
-export const defaultProjects = [
-  { key: 'INBOX', name: 'Inbox' },
-  { key: 'TODAY', name: 'Today' },
-  { key: 'NEXT_7', name: 'Next 7 Days' }
+import { IDefaultProject } from '../interfaces';
+
+export const defaultProjects: IDefaultProject[] = [
+  { key: 'INBOX', name: 'Inbox', projectId: 'INBOX' },
+  { key: 'TODAY', name: 'Today', projectId: 'TODAY' },
+  { key: 'NEXT_7_DAYS', name: 'Next 7 days', projectId: 'NEXT_7_DAYS' }
 ];

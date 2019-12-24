@@ -54,6 +54,7 @@ export interface ITask {
   projectId?: string;
   userId?: string;
   isArchived: boolean;
+  date?: Date;
 }
 // Project component
 export interface IProject {
@@ -61,6 +62,11 @@ export interface IProject {
   name?: string;
   projectId?: string;
   userId?: string;
+}
+
+export interface IDefaultProject extends IProject {
+  key: string;
+  projectId: string;
 }
 
 // Generic

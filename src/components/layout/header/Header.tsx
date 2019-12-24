@@ -1,8 +1,11 @@
 import React from 'react';
 import { useSidebarValue } from '../../../context/sidebar-context';
+import { useIsNewTaskValue } from '../../../context/is-new-task-context';
+import { Button } from '../../Button';
 
 export const Header: React.FC = props => {
   const sidebarValues = useSidebarValue();
+  const { setIsNewTask } = useIsNewTaskValue();
   return (
     <div className="Header">
       <div className="Header__left">
@@ -13,10 +16,7 @@ export const Header: React.FC = props => {
         >
           <img src="/images/burger-menu.svg" alt="burger menu" />
         </div>
-        <div className="Button" role="button" onClick={() => console.log('clicked')}>
-          <img className="Button__icon" src="/images/plus.svg" alt="button icon" />
-          <span className="Button__label">New Task</span>
-        </div>
+        <Button text="New Task" handleClick={() => setIsNewTask(true)} />
       </div>
       <div className="Header__right">
         <div className="Icon Icon__darkmode">

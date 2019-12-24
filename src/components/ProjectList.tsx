@@ -5,6 +5,7 @@ import uuid from 'uuid';
 import { ProjectListItem } from './ProjectListItem';
 
 import { useActiveProjectValue } from '../context/active-project-context';
+import { useIsNewTaskValue } from '../context/is-new-task-context';
 
 import { IAppState } from '../store/index';
 import { IProject } from '../interfaces';
@@ -14,12 +15,16 @@ export const ProjectList: React.FC = () => {
   const { projects, isLoading, errors } = useSelector((store: IAppState) => store.projectState);
   const dispatch = useDispatch();
   const { setActiveProject } = useActiveProjectValue();
+  const { setIsNewTask } = useIsNewTaskValue();
 
   useMemo(() => {
     dispatch(getProjectsAction());
   }, [projects]);
 
-  const handleClick = (project: IProject) => setActiveProject(project);
+  const handleClick = (project: IProject) => {
+    setActiveProject(project);
+    setIsNewTask(false);
+  };
 
   return (
     <div className="ProjectList">
