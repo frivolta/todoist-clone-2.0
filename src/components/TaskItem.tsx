@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { ITaskItem } from '../interfaces';
-import { useDispatch } from 'react-redux';
-import { editTaskAction, getTasksAction } from '../store/actions/tasks.action';
+import { useDispatch, useSelector } from 'react-redux';
+import { editTaskAction, getTasksAction, getAllTasksAction } from '../store/actions/tasks.action';
+import { IAppState } from '../store/index';
 
 export const TaskItem: React.FC<ITaskItem> = props => {
+  const { isLoading } = useSelector((store: IAppState) => store.taskState);
   const [archived, setArchived] = useState(false);
   const task = props.task;
   const dispatch = useDispatch();
 
   const handleChange = () => {
-    if (!archived) {
+    if (!archived && !isLoading) {
       const newTask = {
         ...task,
         isArchived: !task.isArchived
@@ -17,6 +19,7 @@ export const TaskItem: React.FC<ITaskItem> = props => {
       setArchived(!archived);
       dispatch(editTaskAction(newTask));
       dispatch(getTasksAction(props.project.projectId));
+      dispatch(getAllTasksAction());
     }
   };
 

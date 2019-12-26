@@ -7,17 +7,18 @@ import { getTasksAction, addTaskAction } from '../../../store/actions/tasks.acti
 
 import { Display } from '../../Display';
 import { Card } from '../../Card';
-import { TaskItem } from '../../TaskItem';
 import { Input } from '../../Input';
 
 import { useActiveProjectValue } from '../../../context/active-project-context';
 
 import { IAppState } from '../../../store/index';
 import { ITask, IProject } from '../../../interfaces';
+import { TasksList } from '../../TasksList';
+import { isDefaultProject } from '../../../helpers/projects.helpers';
 
 export const ActiveProjectContent: React.FC = () => {
   const { activeProject } = useActiveProjectValue();
-  const { tasks, isLoading, errors } = useSelector((store: IAppState) => store.taskState);
+  const { allTasks, tasks, isLoading, errors } = useSelector((store: IAppState) => store.taskState);
   const dispatch = useDispatch();
 
   const [newTaskName, setNewTaskName] = useState('');
@@ -25,6 +26,8 @@ export const ActiveProjectContent: React.FC = () => {
   const handleChangeTaskName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewTaskName(event.target.value);
   };
+
+  const isDefault = activeProject && isDefaultProject(activeProject);
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) =>
     e.key === 'Enter' && addTaskToDb(newTaskName, activeProject) && clearTaskInput();
@@ -49,13 +52,24 @@ export const ActiveProjectContent: React.FC = () => {
 
   return (
     <>
-      <Display isDisplay={false} tasksNumber={tasks.filter(task => !task.isArchived).length} />
+      <Display
+        isDisplay={isDefault}
+        tasksNumber={tasks.filter(task => !task.isArchived).length}
+        text={activeProject && activeProject.name}
+      />
       <Card>
-        {isLoading
-          ? 'Loading tasks'
-          : activeProject && tasks
-          ? tasks.map((task, key) => <TaskItem task={task} key={key} project={activeProject} />)
-          : 'Select a project to show tasks'}
+        {isLoading ? (
+          'Loading tasks'
+        ) : activeProject && tasks && allTasks ? (
+          <TasksList
+            tasks={tasks}
+            allTasks={allTasks}
+            project={activeProject}
+            isDefaultProject={isDefaultProject(activeProject)}
+          />
+        ) : (
+          'Select a project to show tasks'
+        )}
         {errors && errors}
       </Card>
       {activeProject && (
@@ -66,6 +80,7 @@ export const ActiveProjectContent: React.FC = () => {
             value={newTaskName}
             handleChange={handleChangeTaskName}
             handleKeyPress={handleKeyPress}
+            disabled={isLoading}
           />
         </Card>
       )}

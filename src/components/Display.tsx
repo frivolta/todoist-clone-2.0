@@ -5,6 +5,7 @@ export interface IDisplay {
   tasksNumber?: number;
   text?: string;
   isDisplay: boolean;
+  className?: string;
 }
 
 export const Display: React.FC<IDisplay> = props => {
@@ -16,14 +17,14 @@ export const Display: React.FC<IDisplay> = props => {
         <span className="Display__label">
           {activeProject ? activeProject.name : 'No active project'}
         </span>
-        {props.tasksNumber && <span className="Display__data">{props.tasksNumber}</span>}
+        <span className="Display__data">{props.tasksNumber ? props.tasksNumber : '0'}</span>
       </div>
     );
   };
 
   const renderIsDisplay = () => {
     return (
-      <div className="Display">
+      <div className={`Display ${props.className}`}>
         <span className="Display__label">{props.text ? props.text : ''}</span>
       </div>
     );

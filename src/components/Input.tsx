@@ -6,6 +6,7 @@ interface IInput {
   value?: string;
   handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleKeyPress?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
 }
 
 export const Input: React.FC<IInput> = props => {
@@ -18,6 +19,7 @@ export const Input: React.FC<IInput> = props => {
         className={`Input__field ${props.small && `Input__field--small`}`}
         placeholder={props.placeholder}
         onKeyPress={props.handleKeyPress}
+        disabled={props.disabled ? props.disabled : false}
       />
     </div>
   );

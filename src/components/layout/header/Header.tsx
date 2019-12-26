@@ -16,7 +16,7 @@ export const Header: React.FC = props => {
         >
           <img src="/images/burger-menu.svg" alt="burger menu" />
         </div>
-        <Button text="New Task" handleClick={() => setIsNewTask(true)} />
+        <Button text="Quick Task" handleClick={() => setIsNewTask(true)} />
       </div>
       <div className="Header__right">
         <div className="Icon Icon__darkmode">

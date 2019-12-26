@@ -7,9 +7,11 @@ export interface ITaskState {
   readonly isLoading: boolean;
   readonly errors: string | undefined;
   readonly tasks: ITask[];
+  readonly allTasks: ITask[];
 }
 
 const initialTasksState = {
+  allTasks: [],
   isLoading: false,
   errors: undefined,
   tasks: []
@@ -17,6 +19,12 @@ const initialTasksState = {
 
 export const taskReducer: Reducer<ITaskState> = (state = initialTasksState, action) => {
   switch (action.type) {
+    case TasksActionTypes.TASK_ALL_TASKS_REQUEST:
+      return {
+        ...state,
+        errors: undefined,
+        allTasks: action.tasks
+      };
     case TasksActionTypes.TASK_REQUEST:
       return {
         ...state,

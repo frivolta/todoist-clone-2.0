@@ -18,7 +18,7 @@ export const ProjectSelect: React.FC<ProjectSelect> = props => {
   };
   return (
     <select value={props.selectedProjectId} onChange={handleProjectChange}>
-      <option value={undefined}>---</option>
+      <option value={undefined}>Select Project</option>
       {projects.map(project => (
         <option key={project.projectId} value={project.projectId}>
           {project.name}

@@ -7,6 +7,7 @@ import { ITaskState } from '../projects/task.reducer';
 
 // Import projects typing
 export enum TasksActionTypes {
+  TASK_ALL_TASKS_REQUEST = 'TASK_ALL_TASKS_REQUEST',
   TASK_REQUEST = 'TASK_REQUEST',
   TASK_EDIT = 'TASK_EDIT',
   TASK_IS_LOADING = 'TASK_IS_SUCCESS',
@@ -35,9 +36,12 @@ export interface ITaskEdit {
 export type TaskActions = ITaskRequest | ITaskLoading | ITaskErrors | ITaskEdit;
 
 // Get tasks by ProjectId
-export const getTasksAction: ActionCreator<
-  ThunkAction<Promise<any>, ITaskState, string, TaskActions>
-> = (projectId = 'INBOX') => async (dispatch: Dispatch) => {
+export const getTasksAction: ActionCreator<ThunkAction<
+  Promise<any>,
+  ITaskState,
+  string,
+  TaskActions
+>> = (projectId = 'INBOX') => async (dispatch: Dispatch) => {
   try {
     dispatch(taskIsLoading(true));
     const data = await firebase
@@ -65,9 +69,45 @@ export const getTasksAction: ActionCreator<
   }
 };
 
-export const editTaskAction: ActionCreator<
-  ThunkAction<Promise<any>, ITaskState, ITask, TaskActions>
-> = (task: ITask) => async (dispatch: Dispatch) => {
+// Get All Tasks
+export const getAllTasksAction: ActionCreator<ThunkAction<
+  Promise<any>,
+  ITaskState,
+  string,
+  TaskActions
+>> = () => async (dispatch: Dispatch) => {
+  try {
+    dispatch(taskIsLoading(true));
+    const data = await firebase
+      .firestore()
+      .collection('tasks')
+      .where('userId', '==', 'eacf2a2d-ac94-4550-a02a-5f9b2df03bfe')
+      .orderBy('task')
+      .get()
+      .then(snapshot => {
+        return snapshot.docs.map(task => ({
+          ...task.data(),
+          docId: task.id
+        }));
+      });
+    dispatch({
+      type: TasksActionTypes.TASK_ALL_TASKS_REQUEST,
+      tasks: data
+    });
+    dispatch(taskIsLoading(false));
+  } catch (err) {
+    console.log(err);
+    dispatch(taskIsLoading(false));
+    dispatch(taskHasErrors());
+  }
+};
+
+export const editTaskAction: ActionCreator<ThunkAction<
+  Promise<any>,
+  ITaskState,
+  ITask,
+  TaskActions
+>> = (task: ITask) => async (dispatch: Dispatch) => {
   console.log('Called edit');
   try {
     dispatch(taskIsLoading(true));
@@ -84,9 +124,12 @@ export const editTaskAction: ActionCreator<
     dispatch(taskHasErrors());
   }
 };
-export const addTaskAction: ActionCreator<
-  ThunkAction<Promise<any>, ITaskState, ITask, TaskActions>
-> = (task: ITask) => async (dispatch: Dispatch) => {
+export const addTaskAction: ActionCreator<ThunkAction<
+  Promise<any>,
+  ITaskState,
+  ITask,
+  TaskActions
+>> = (task: ITask) => async (dispatch: Dispatch) => {
   try {
     dispatch(taskIsLoading(true));
     await firebase
