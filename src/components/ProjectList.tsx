@@ -39,7 +39,7 @@ export const ProjectList: React.FC = () => {
           </ProjectListItem>
         ))
       ) : (
-        <p>Loading projects</p>
+        <span className="mini">Loading projects</span>
       )}
       {errors && <p>{errors}</p>}
     </div>

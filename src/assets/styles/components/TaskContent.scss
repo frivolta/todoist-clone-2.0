@@ -1,0 +1,13 @@
+.TaskContent {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.2s;
+
+  &--isLoading {
+    opacity: 0.3;
+    transition: all 0.2s;
+  }
+}

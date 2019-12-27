@@ -43,6 +43,13 @@ input {
   margin-top: 32px;
 }
 
+.mini {
+  color: $primaryColor;
+  font-size: $small;
+  text-transform: uppercase;
+  text-align: center;
+}
+
 @import 'components/Content';
 @import 'components/Sidebar';
 @import 'components/Header';
@@ -55,3 +62,5 @@ input {
 @import 'components/Display';
 @import 'components/TaskItem';
 @import 'components/Input';
+@import 'components/LinearLoader';
+@import 'components/TaskContent';

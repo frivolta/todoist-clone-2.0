@@ -41,7 +41,7 @@ export const NewTaskContent: React.FC = () => {
   };
 
   return (
-    <>
+    <div className={`TaskContent ${isLoading && `TaskContent--isLoading`}`}>
       <Display isDisplay text="Quick to Inbox" />
       <Card>
         <Input
@@ -52,6 +52,6 @@ export const NewTaskContent: React.FC = () => {
           disabled={isLoading}
         />
       </Card>
-    </>
+    </div>
   );
 };
