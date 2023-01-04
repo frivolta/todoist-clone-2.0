@@ -26,7 +26,7 @@
     "react-uuid": "^1.0.2",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
-    "simple-flexbox": "^2.3.0",
+    "simple-flexbox": "^2.3.3",
     "typescript": "^3.7.2",
     "uuid": "^3.3.3"
   },
